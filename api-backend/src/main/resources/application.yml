@@ -1,0 +1,12 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: api-backend
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dbproduct
+    username: postgres
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update

@@ -1,0 +1,93 @@
+<div class="container-form-products">
+    <mat-card>
+        <mat-card-content>
+            <h3>Form Management Products</h3>
+        </mat-card-content>
+    </mat-card>
+    <br>
+    <div *ngIf="isLoading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <mat-card>
+        <form class="form-catalog" [formGroup]="productForm">
+            <div *ngIf="myParams!=0">
+                <mat-form-field>
+                    <mat-label>ID</mat-label>
+                    <input type="text" matInput formControlName="id" placeholder="Id of products">
+                    <input type="hidden" formControlName="id">
+                </mat-form-field>
+            </div>
+
+            <mat-form-field>
+                <mat-label>CODE</mat-label>
+                <input type="text" matInput formControlName="code" required placeholder="Code of products">
+                <mat-error *ngIf="productForm.controls.code.touched && productForm.controls.name.invalid">
+                    <span *ngIf="productForm.controls.code.errors.required">This is field mandatory</span>
+                    <span *ngIf="productForm.controls.code.errors.pattern">This is field invalid request</span>
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+                <mat-label>NAME</mat-label>
+                <input type="text" matInput formControlName="name" required placeholder="Name of products">
+                <mat-error *ngIf="productForm.controls.name.touched && productForm.controls.name.invalid">
+                    <span *ngIf="productForm.controls.name.errors.required">This is field mandatory</span>
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+                <mat-label>CATEGORY</mat-label>
+                <input type="text" matInput formControlName="category" required placeholder="Category of products">
+                <mat-error *ngIf="productForm.controls.category.touched && productForm.controls.category.invalid">
+                    <span *ngIf="productForm.controls.category.errors.required">This is field mandatory</span>
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+                <mat-label>BRAND</mat-label>
+                <input type="text" matInput formControlName="brand" required placeholder="Brand of products">
+                <mat-error *ngIf="productForm.controls.brand.touched && productForm.controls.brand.invalid">
+                    <span *ngIf="productForm.controls.brand.errors.required">This is field mandatory</span>
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+                <mat-label>TYPE</mat-label>
+                <input type="text" matInput formControlName="type" required placeholder="Type of products">
+                <mat-error *ngIf="productForm.controls.type.touched && productForm.controls.type.invalid">
+                    <span *ngIf="productForm.controls.type.errors.required">This is field mandatory</span>
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+                <mat-label>DESCRIPTION</mat-label>
+                <input type="text" matInput formControlName="description" required placeholder="Description of products">
+                <mat-error *ngIf="productForm.controls.description.touched && productForm.controls.description.invalid">
+                    <span *ngIf="productForm.controls.description.errors.required">This is field mandatory</span>
+                </mat-error>
+            </mat-form-field>
+
+        </form>
+    </mat-card>
+    <br>
+    <mat-card>
+        <button *ngIf="myParams == 0" type="button" mat-raised-button color="warn" [disabled]="!(productForm.valid && productForm.dirty)"
+            (click)="handleSubmit()">
+            Save
+        </button> &nbsp;
+        <button *ngIf="myParams != 0" type="button" mat-raised-button color="warn" [disabled]="!(productForm.valid && productForm.dirty)"
+            (click)="handleSubmit()">
+            Update
+        </button> &nbsp;
+        <button type="button" routerLink="/product" mat-raised-button color="default">
+            <mat-icon fontIcon="undo"></mat-icon>
+            Cancel
+        </button>
+    </mat-card>
+
+</div>

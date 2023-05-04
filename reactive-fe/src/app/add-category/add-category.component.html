@@ -1,0 +1,42 @@
+<div class="container-form-category">
+    <mat-card>
+        <mat-card-content>
+            <h3>Form Management Category</h3>
+        </mat-card-content>
+    </mat-card>
+    <br>
+    <div *ngIf="isLoading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <mat-card>
+        <form class="form-category" [formGroup]="categoryForm">
+            <div *ngIf="myParams!=0">
+                <mat-form-field>
+                    <mat-label>ID</mat-label>
+                    <input type="text" matInput formControlName="id" placeholder="Id of category">
+                </mat-form-field>
+            </div>
+            
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input type="text" matInput formControlName="name" required placeholder="Name of category">
+                <mat-error *ngIf="categoryForm.controls.name.touched && categoryForm.controls.name.invalid">
+                    <span *ngIf="categoryForm.controls.name.errors.required">This is field mandatory</span>
+                    <span *ngIf="categoryForm.controls.name.errors.pattern">This is field invalid request</span>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </mat-card>
+    <br>
+    <mat-card>
+        <button type="button" mat-raised-button color="warn" 
+        (click)="handleSubmit()"
+        [disabled]="!(categoryForm.valid && categoryForm.dirty)">
+            Save
+        </button>&nbsp;
+        <button type="button" routerLink="/category" mat-raised-button color="default">
+            <mat-icon fontIcon="undo"></mat-icon>
+            Cancel
+        </button>
+    </mat-card>
+</div>

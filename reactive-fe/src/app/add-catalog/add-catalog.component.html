@@ -1,0 +1,93 @@
+<div class="container-form-catalog">
+    <mat-card>
+        <mat-card-content>
+            <h3>Form Management Catalog</h3>
+        </mat-card-content>
+    </mat-card>
+    <br>
+    <div *ngIf="isLoading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <mat-card>
+        <form class="form-catalog" [formGroup]="catalogForm">
+            <div *ngIf="myParams!=0">
+                <mat-form-field>
+                    <mat-label>ID</mat-label>
+                    <input type="text" matInput formControlName="id" placeholder="Id of catalog">
+                    <input type="hidden" formControlName="idProductDetail">
+                </mat-form-field>
+            </div>
+
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input type="text" matInput formControlName="name" required placeholder="Name of catalog">
+                <mat-error *ngIf="catalogForm.controls.name.touched && catalogForm.controls.name.invalid">
+                    <span *ngIf="catalogForm.controls.name.errors.required">This is field mandatory</span>
+                    <span *ngIf="catalogForm.controls.name.errors.pattern">This is field invalid request</span>
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+                <mat-label>Price</mat-label>
+                <input type="text" matInput formControlName="price" required placeholder="Price of catalog">
+                <mat-error *ngIf="catalogForm.controls.price.touched && catalogForm.controls.price.invalid">
+                    <span *ngIf="catalogForm.controls.price.errors.required">This is field mandatory</span>
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+                <mat-label>Quantity</mat-label>
+                <input type="text" matInput formControlName="qty" required placeholder="Qty of catalog">
+                <mat-error *ngIf="catalogForm.controls.qty.touched && catalogForm.controls.price.invalid">
+                    <span *ngIf="catalogForm.controls.qty.errors.required">This is field mandatory</span>
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+                <mat-label>Category</mat-label>
+                <input type="text" matInput formControlName="categoryId" required placeholder="category of catalog">
+                <mat-error *ngIf="catalogForm.controls.categoryId.touched && catalogForm.controls.categoryId.invalid">
+                    <span *ngIf="catalogForm.controls.categoryId.errors.required">This is field mandatory</span>
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+                <mat-label>Sku Number</mat-label>
+                <input type="text" matInput formControlName="skuNumber" required placeholder="Sku of catalog">
+                <mat-error *ngIf="catalogForm.controls.skuNumber.touched && catalogForm.controls.skuNumber.invalid">
+                    <span *ngIf="catalogForm.controls.skuNumber.errors.required">This is field mandatory</span>
+                </mat-error>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field>
+                <mat-label>Barcode Number</mat-label>
+                <input type="text" matInput formControlName="barcodeNumber" required placeholder="Barcode of catalog">
+                <mat-error *ngIf="catalogForm.controls.barcodeNumber.touched && catalogForm.controls.skuNumber.invalid">
+                    <span *ngIf="catalogForm.controls.barcodeNumber.errors.required">This is field mandatory</span>
+                </mat-error>
+            </mat-form-field>
+
+        </form>
+    </mat-card>
+    <br>
+    <mat-card>
+        <button *ngIf="myParams == 0" type="button" mat-raised-button color="warn" [disabled]="!(catalogForm.valid && catalogForm.dirty)"
+            (click)="handleSubmit()">
+            Save
+        </button> &nbsp;
+        <button *ngIf="myParams != 0" type="button" mat-raised-button color="warn" [disabled]="!(catalogForm.valid && catalogForm.dirty)"
+            (click)="handleSubmit()">
+            Update
+        </button> &nbsp;
+        <button type="button" routerLink="/catalog" mat-raised-button color="default">
+            <mat-icon fontIcon="undo"></mat-icon>
+            Cancel
+        </button>
+    </mat-card>
+
+</div>
